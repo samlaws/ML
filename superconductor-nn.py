@@ -45,7 +45,6 @@ def build_baseline():
 def build_best():
     model = Sequential()
     model.add(Dense(units=64, input_dim=X.shape[1], activation='relu'))
-    #model.add(Dropout(rate=0.25))
     model.add(Dense(units=64, activation='relu'))
     model.add(Dropout(rate=0.4))
     model.add(Dense(units=64, activation='relu'))
@@ -57,9 +56,6 @@ def build_best():
     model.add(Dense(units=1, activation='linear'))
     model.compile(optimizer='adam', loss='mean_squared_error', metrics=[r_sq])
     return model
-
-
-
 
 regressor = KerasRegressor(build_fn=build_best, batch_size=10, epochs=100)
 regressor.fit(X_train, y_train)
